@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails/with_conditions"
+require "with_conditions"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

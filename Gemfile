@@ -2,9 +2,12 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in rails-with_conditions.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+gem "rake"
 
-gem "rspec", "~> 3.0"
+group :test do
+  gem "activemodel"
+  gem "activesupport"
+  gem "rspec"
+end

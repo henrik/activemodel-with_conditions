@@ -1,24 +1,48 @@
-# Rails::WithConditions
+# ActiveModel::WithConditions
 
-TODO: Delete this and the text below, and describe your gem
+Adds `with_conditions` to Rails apps, or other projects using Active Model or Active Record.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails/with_conditions`. To experiment with that code, run `bin/console` for an interactive prompt.
+`with_conditions` is like Active Support's [`with_options`](https://guides.rubyonrails.org/active_support_core_extensions.html#with-options), but only supports `:if` and `:unless`, and it merges these.
+
+So you can do:
+
+``` ruby
+with_conditions(if: :feature_x_is_on?) do
+  validate :free_plans_must_have_x, if: :free_plan?
+end
+```
+
+It supports all forms of `:if` and `:unless` – symbols, lambdas (with or without a block argument), and arrays of the same.
+
+## Compared to `with_options`
+
+This improves on Active Support's `with_options`, where the inner `:if` would overwrite the outer one, and you'd need to work around it with something like:
+
+``` ruby
+with_options(unless: -> { !feature_x_is_on? }) do
+  validate :free_plans_must_have_x, if: :free_plan?
+end
+```
+
+You can still use `with_options` for other things (though this gem's author ever only uses it for validations and callback conditions). You could even combine them:
+
+``` ruby
+with_conditions(if: :feature_x_is_on?) do
+  with_options(presence: true) do
+    validates :x
+  end
+end
+```
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add activemodel-with_conditions
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
-
-## Usage
-
-TODO: Write usage instructions here
+    $ gem install activemodel-with_conditions
 
 ## Development
 
@@ -28,7 +52,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails-with_conditions.
+Bug reports and pull requests are welcome at <https://github.com/henrik/activemodel-with_conditions>.
 
 ## License
 
