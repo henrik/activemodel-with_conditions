@@ -1,8 +1,7 @@
 PATH
   remote: .
   specs:
-    activemodel-with_conditions (1.0.0)
-      activemodel
+    activemodel-with_conditions (1.1.0)
 
 GEM
   remote: https://rubygems.org/

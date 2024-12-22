@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "active_model"
 require_relative "with_conditions/options_merger"
 require_relative "with_conditions/version"
 
@@ -16,13 +15,7 @@ module WithConditions
   end
 end
 
-module ActiveModel
-  module API
-    singleton_class.prepend(Module.new do
-      def included(klass)
-        super
-        klass.extend WithConditions
-      end
-    end)
-  end
-end
+# To keep things simple, we include this in all objects, like `with_options`.
+#
+# Otherwise we would want specs that include Active Record, and we'd want to consider that different versions of Rails use Active Model in different ways (e.g. only recent Rails per 2024-12-22 include ActiveModel::API in ActiveRecord::Base`).
+Object.extend WithConditions
