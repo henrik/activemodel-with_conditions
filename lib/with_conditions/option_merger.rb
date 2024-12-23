@@ -8,7 +8,13 @@ module WithConditions
       @unless_conds = Array(::Kernel.binding.local_variable_get(:unless))
     end
 
+    def inspect
+      "#<#{__class__.name}:#{__id__} if_conds=#{@if_conds.inspect} unless_conds=#{@unless_conds.inspect} context=#{@context.inspect}>"
+    end
+
     private
+
+    def __class__ = (class << self; superclass; end)
 
     def method_missing(method, *, **kwargs, &)
       kwargs[:if] = @if_conds + Array(kwargs[:if])

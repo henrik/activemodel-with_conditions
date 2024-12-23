@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "with_conditions/options_merger"
+require_relative "with_conditions/option_merger"
 require_relative "with_conditions/version"
 
 module WithConditions
