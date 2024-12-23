@@ -24,7 +24,7 @@ with_options(unless: -> { !feature_x_is_on? }) do
 end
 ```
 
-You can still use `with_options` for other things (though this gem's author ever only uses it for validations and callback conditions). You could even combine them:
+You can still use `with_options` for other things (though this gem's author only ever uses it for validations and callback conditions). You could even combine them:
 
 ``` ruby
 with_conditions(if: :feature_x_is_on?) do
