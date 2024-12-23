@@ -17,5 +17,5 @@ end
 
 # To keep things simple, we include this in all objects, like `with_options`.
 #
-# Otherwise we would want specs that include Active Record, and we'd want to consider that different versions of Rails use Active Model in different ways (e.g. only recent Rails per 2024-12-22 include ActiveModel::API in ActiveRecord::Base`).
+# Otherwise we would want specs that include Active Record, and we'd want to consider that different versions of Rails use Active Model in different ways (e.g. only recent Rails per 2024-12-22 include `ActiveModel::API` in `ActiveRecord::Base`).
 Object.extend WithConditions
